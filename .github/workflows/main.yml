@@ -46,4 +46,9 @@ jobs:
       - run: |
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}
-            
+
+      - name: 'deploy image'
+        uses: azure/webapps-deploy@v2
+        with:
+           app-name: 'averykeyvaulttesting'
+           images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}'            
