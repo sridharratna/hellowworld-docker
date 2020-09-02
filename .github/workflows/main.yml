@@ -26,9 +26,24 @@ jobs:
       - name: Run a one-line script
         run: mvn clean install
         
-      - name: Azure Container Registry Login
-        uses: Azure/docker-login@v1
+      #- name: Azure Container Registry Login
+      #  uses: Azure/docker-login@v1
+      #  with:
+      #    username:  ${{ secrets.ACR_USER_NAME }} 
+      #    password: ${{ secrets.ACR_PASSWORD }} 
+      #    login-server: sridharratnareddy.azurecr.io
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
         with:
-          username:  ${{ secrets.ACR_USER_NAME }} 
-          password: ${{ secrets.ACR_PASSWORD }} 
-          login-server: sridharratnareddy.azurecr.io
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+      - name: 'Build and push image'
+        uses: azure/docker-login@v1
+        with:
+            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}
+            
