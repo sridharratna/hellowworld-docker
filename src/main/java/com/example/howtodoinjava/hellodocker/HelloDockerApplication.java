@@ -22,9 +22,18 @@ public class HelloDockerApplication {
 
 @RestController
 class HelloDockerRestController {
+	
 	@RequestMapping("/hello/{name}")
 	public String helloDocker(@PathVariable(value = "name") String name) {
 		String response = "Hello " + name + " Response received on : " + new Date();
+		System.out.println(response);
+		return response;
+
+	}
+	
+	@RequestMapping("/hello/actions")
+	public String githubActions() {
+		String response = "GitHub Actions Tested : " + new Date();
 		System.out.println(response);
 		return response;
 
