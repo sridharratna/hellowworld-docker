@@ -50,5 +50,5 @@ jobs:
       - name: 'deploy image'
         uses: azure/webapps-deploy@v2
         with:
-           app-name: 'averykeyvaulttesting'
+           app-name: 'sshcontainer'
            images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}'            
