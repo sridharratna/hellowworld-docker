@@ -51,5 +51,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
            #publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-           app-name: 'githubactins-poc'
+           app-name: 'githubactions-poc'
            images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world
