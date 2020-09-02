@@ -25,4 +25,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: mvn clean install
-
+        
+      - name: Azure Container Registry Login
+        uses: Azure/docker-login@v1
+        with:
+          username:  ${{ secrets.ACR_USER_NAME }} 
+          password: ${{ secrets.ACR_PASSWORD }} 
+          login-server: sridharratnareddy.azurecr.io
