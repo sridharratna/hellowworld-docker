@@ -33,7 +33,7 @@ class HelloDockerRestController {
 	
 	@RequestMapping("/hello/actions")
 	public String githubActions() {
-		String response = "GitHub Actions Tested : " + new Date();
+		String response = "GitHub Actions Tested  and verified: " + new Date();
 		System.out.println(response);
 		return response;
 
@@ -42,7 +42,7 @@ class HelloDockerRestController {
 	
 	@RequestMapping("/hello/secrets")
 	public String helloSecret() {
-		String kvUri = "https://averykeyvaulttesting.vault.azure.net";
+		String kvUri = "https://keyvaultpoc-avery.vault.azure.net";
 
 		SecretClient secretClient = new SecretClientBuilder()
 		    .vaultUrl(kvUri)
