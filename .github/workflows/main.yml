@@ -44,12 +44,12 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world
 
       - name: 'deploy image'
         uses: azure/webapps-deploy@v2
         with:
-           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-           #app-name: 'averykeyvaulttesting'
-           #images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${{ github.sha }}            
+           #publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+           app-name: 'githubactins-poc'
+           images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world
